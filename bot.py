@@ -94,6 +94,17 @@ storage = [
     {'region' : 'Vale', 'system':'XSQ-TF', 'wormholes':[]},
     {'region' : 'Vale', 'system':'Z-8Q65', 'wormholes':[]},
     {'region' : 'Vale', 'system':'ZA0L-U', 'wormholes':[]},
+    {'region' : 'Immensea', 'system':'6-I162', 'wormholes':[]},
+    {'region' : 'Immensea', 'system':'AC-7LZ', 'wormholes':[]},
+    {'region' : 'Immensea', 'system':'CJNF-J', 'wormholes':[]},
+    {'region' : 'Immensea', 'system':'FRTC-5', 'wormholes':[]},
+    {'region' : 'Immensea', 'system':'NS2L-4', 'wormholes':[]},
+    {'region' : 'Immensea', 'system':'O7-7UX', 'wormholes':[]},
+    {'region' : 'Immensea', 'system':'R-ORB7', 'wormholes':[]},
+    {'region' : 'Immensea', 'system':'U9U-TQ', 'wormholes':[]},
+    {'region' : 'Immensea', 'system':'Y-C4AL', 'wormholes':[]},
+    {'region' : 'Immensea', 'system':'Y-FZ5N', 'wormholes':[]},
+    {'region' : 'Immensea', 'system':'Y19P-1', 'wormholes':[]},
 ]
 
 dotlanUrl = 'https://evemaps.dotlan.net/map/'
@@ -118,8 +129,41 @@ async def add(ctx, system: str, wormholeType: str):
             if (region['system'] == system):
                 wormholes = region['wormholes']
                 region['wormholes'] += [wormholeType]
+                payload = region['system'] + '    >>    ' + drifterWormholeDesignation
 
-        payload = region['system'] + '    >>    ' + drifterWormholeDesignation
+        ## Persist data into a file
+        with open("database.json", 'w') as file:
+            json.dump(storage, file)
+
+        await ctx.send(payload)
+    except KeyError as exception:
+        await ctx.send(f"""
+You entered `{wormhole_type}`, which is not a valid drifter wormhole identifier.
+```
+Supported identifiers:
+
+V - Vidette V928
+R - Redoubt R259
+S - Sentinel S877
+B - Barbican B735
+C - Conflux C414
+```""")
+
+@bot.command(help='Register new drifter wormhole to the database')
+async def remove(ctx, system: str, wormholeType: str):
+    try:
+        drifterWormholeDesignation = DrifterWormholeTypes[wormholeType].value
+        wormholeType = wormholeType.capitalize()
+        payload = 'Could not find drifter type ' + wormholeType + ' in ' + system
+
+        for region in storage:
+            if (region['system'] == system):
+                wormholes = region['wormholes']
+                for index, wormhole in enumerate(wormholes):
+                    if (wormhole == wormholeType):
+                        wormholes.pop(index)
+                        region['wormholes'] = wormholes
+                        payload = region['system'] + '    REMOVED    ' + drifterWormholeDesignation\
 
         ## Persist data into a file
         with open("database.json", 'w') as file:
@@ -166,6 +210,19 @@ async def init(ctx, password:str):
     if (env_password == password):
         with open("database.json", 'w') as file:
             json.dump(storage, file)
+
+@bot.command(help='Lists all supported regions')
+async def regions(ctx):
+    regions = []
+    payload = '```[Regions]' + os.linesep + os.linesep
+
+    for region in storage:
+        if region['region'] not in regions:
+            regions.append(region['region'])
+            payload += region['region'] + os.linesep
+
+    payload += '```'
+    await ctx.send(payload)
 
 try:
     bot.run(TOKEN)
