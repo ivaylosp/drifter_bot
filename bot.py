@@ -73,28 +73,28 @@ storage = [
     {'region' : 'Fountain', 'system':'V6-NY1', 'wormholes':[]},
     {'region' : 'Fountain', 'system':'YRNJ-8', 'wormholes':[]},
     {'region' : 'Fountain', 'system':'Z-YN5Y', 'wormholes':[]},
-    {'region' : 'Vale', 'system':'0MV-4W', 'wormholes':[]},
-    {'region' : 'Vale', 'system':'1N-FJ8', 'wormholes':[]},
-    {'region' : 'Vale', 'system':'1VK-6B', 'wormholes':[]},
-    {'region' : 'Vale', 'system':'1W-0KS', 'wormholes':[]},
-    {'region' : 'Vale', 'system':'5T-KM3', 'wormholes':[]},
-    {'region' : 'Vale', 'system':'6WW-28', 'wormholes':[]},
-    {'region' : 'Vale', 'system':'7-K5EL', 'wormholes':[]},
-    {'region' : 'Vale', 'system':'BR-6XP', 'wormholes':[]},
-    {'region' : 'Vale', 'system':'FS-RFL', 'wormholes':[]},
-    {'region' : 'Vale', 'system':'H-NOU5', 'wormholes':[]},
-    {'region' : 'Vale', 'system':'JZV-F4', 'wormholes':[]},
-    {'region' : 'Vale', 'system':'LS9B-9', 'wormholes':[]},
-    {'region' : 'Vale', 'system':'MGAM-4', 'wormholes':[]},
-    {'region' : 'Vale', 'system':'MQ-O27', 'wormholes':[]},
-    {'region' : 'Vale', 'system':'O-LR1H', 'wormholes':[]},
-    {'region' : 'Vale', 'system':'P3EN-E', 'wormholes':[]},
-    {'region' : 'Vale', 'system':'Q-R3GP', 'wormholes':[]},
-    {'region' : 'Vale', 'system':'S-NJBB', 'wormholes':[]},
-    {'region' : 'Vale', 'system':'VI2K-J', 'wormholes':[]},
-    {'region' : 'Vale', 'system':'XSQ-TF', 'wormholes':[]},
-    {'region' : 'Vale', 'system':'Z-8Q65', 'wormholes':[]},
-    {'region' : 'Vale', 'system':'ZA0L-U', 'wormholes':[]},
+    {'region' : 'Vale_of_the_Silent', 'system':'0MV-4W', 'wormholes':[]},
+    {'region' : 'Vale_of_the_Silent', 'system':'1N-FJ8', 'wormholes':[]},
+    {'region' : 'Vale_of_the_Silent', 'system':'1VK-6B', 'wormholes':[]},
+    {'region' : 'Vale_of_the_Silent', 'system':'1W-0KS', 'wormholes':[]},
+    {'region' : 'Vale_of_the_Silent', 'system':'5T-KM3', 'wormholes':[]},
+    {'region' : 'Vale_of_the_Silent', 'system':'6WW-28', 'wormholes':[]},
+    {'region' : 'Vale_of_the_Silent', 'system':'7-K5EL', 'wormholes':[]},
+    {'region' : 'Vale_of_the_Silent', 'system':'BR-6XP', 'wormholes':[]},
+    {'region' : 'Vale_of_the_Silent', 'system':'FS-RFL', 'wormholes':[]},
+    {'region' : 'Vale_of_the_Silent', 'system':'H-NOU5', 'wormholes':[]},
+    {'region' : 'Vale_of_the_Silent', 'system':'JZV-F4', 'wormholes':[]},
+    {'region' : 'Vale_of_the_Silent', 'system':'LS9B-9', 'wormholes':[]},
+    {'region' : 'Vale_of_the_Silent', 'system':'MGAM-4', 'wormholes':[]},
+    {'region' : 'Vale_of_the_Silent', 'system':'MQ-O27', 'wormholes':[]},
+    {'region' : 'Vale_of_the_Silent', 'system':'O-LR1H', 'wormholes':[]},
+    {'region' : 'Vale_of_the_Silent', 'system':'P3EN-E', 'wormholes':[]},
+    {'region' : 'Vale_of_the_Silent', 'system':'Q-R3GP', 'wormholes':[]},
+    {'region' : 'Vale_of_the_Silent', 'system':'S-NJBB', 'wormholes':[]},
+    {'region' : 'Vale_of_the_Silent', 'system':'VI2K-J', 'wormholes':[]},
+    {'region' : 'Vale_of_the_Silent', 'system':'XSQ-TF', 'wormholes':[]},
+    {'region' : 'Vale_of_the_Silent', 'system':'Z-8Q65', 'wormholes':[]},
+    {'region' : 'Vale_of_the_Silent', 'system':'ZA0L-U', 'wormholes':[]},
     {'region' : 'Immensea', 'system':'6-I162', 'wormholes':[]},
     {'region' : 'Immensea', 'system':'AC-7LZ', 'wormholes':[]},
     {'region' : 'Immensea', 'system':'CJNF-J', 'wormholes':[]},
@@ -186,6 +186,17 @@ storage = [
     {'region' : 'Perrigen_Falls', 'system':'TAL1-3', 'wormholes':[]},
     {'region' : 'Perrigen_Falls', 'system':'VWES-Y', 'wormholes':[]},
     {'region' : 'Perrigen_Falls', 'system':'XU7-CH', 'wormholes':[]},
+    {'region' : 'Delve', 'system':'8F-TK3', 'wormholes':[]},
+    {'region' : 'Delve', 'system':'D-W7F0', 'wormholes':[]},
+    {'region' : 'Delve', 'system':'F-9PXR', 'wormholes':[]},
+    {'region' : 'Delve', 'system':'HM-XR2', 'wormholes':[]},
+    {'region' : 'Delve', 'system':'IP6V-X', 'wormholes':[]},
+    {'region' : 'Delve', 'system':'KBAK-I', 'wormholes':[]},
+    {'region' : 'Delve', 'system':'M-SRKS', 'wormholes':[]},
+    {'region' : 'Delve', 'system':'QY6-RK', 'wormholes':[]},
+    {'region' : 'Delve', 'system':'YZ9-F6', 'wormholes':[]},
+    {'region' : 'Delve', 'system':'Z3V-1W', 'wormholes':[]},
+    {'region' : 'Delve', 'system':'ZXB-VC', 'wormholes':[]},
 ]
 # perrigan falls
 dotlanUrl = 'https://evemaps.dotlan.net/map/'
@@ -232,7 +243,7 @@ B - Barbican B735
 C - Conflux C414
 ```""")
 
-@bot.command(help='Register new drifter wormhole to the database')
+@bot.command(help='Remove a drifter wormhole from the database')
 async def remove(ctx, system: str, wormholeType: str):
     if CHANNEL not in ctx.message.channel.name: return
 
@@ -268,7 +279,7 @@ B - Barbican B735
 C - Conflux C414
 ```""")
 
-@bot.command(help='List all drifter wormholes in the database')
+@bot.command(help='List all drifter wormholes for a region with Catch as default')
 async def list(ctx, region:str='Catch'):
     if CHANNEL not in ctx.message.channel.name: return
 
