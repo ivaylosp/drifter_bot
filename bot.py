@@ -19,6 +19,7 @@ class DrifterWormholeTypes(Enum):
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
+CHANNEL = os.getenv('DISCORD_CHANNEL')
 
 # Specifying supported intents
 intents = discord.Intents.default()
@@ -201,6 +202,8 @@ if (file_exists):
 
 @bot.command(help='Register new drifter wormhole to the database')
 async def add(ctx, system: str, wormholeType: str):
+    if CHANNEL not in ctx.message.channel.name: return
+
     try:
         drifterWormholeDesignation = DrifterWormholeTypes[wormholeType].value
         wormholeType = wormholeType.capitalize()
@@ -231,6 +234,8 @@ C - Conflux C414
 
 @bot.command(help='Register new drifter wormhole to the database')
 async def remove(ctx, system: str, wormholeType: str):
+    if CHANNEL not in ctx.message.channel.name: return
+
     try:
         drifterWormholeDesignation = DrifterWormholeTypes[wormholeType].value
         wormholeType = wormholeType.capitalize()
@@ -265,6 +270,8 @@ C - Conflux C414
 
 @bot.command(help='List all drifter wormholes in the database')
 async def list(ctx, region:str='Catch'):
+    if CHANNEL not in ctx.message.channel.name: return
+
     region = region.title().replace(" ","_")
     url = dotlanUrl + region.replace(" ", "_") + '/'
 
@@ -286,6 +293,8 @@ async def list(ctx, region:str='Catch'):
 
 @bot.command(help='Initialize datastore')
 async def init(ctx, password:str):
+    if CHANNEL not in ctx.message.channel.name: return
+
     env_password = os.getenv('ADMIN_PASSWORD')
     if (env_password == password):
         with open("database.json", 'w') as file:
@@ -293,6 +302,8 @@ async def init(ctx, password:str):
 
 @bot.command(help='Lists all supported regions')
 async def regions(ctx):
+    if CHANNEL not in ctx.message.channel.name: return
+
     regions = []
     payload = '```[Regions]' + os.linesep + os.linesep
 
