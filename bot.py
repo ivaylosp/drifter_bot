@@ -5,6 +5,7 @@ import hashlib
 import json
 import time
 
+from datetime import datetime
 from os.path import exists
 from collections.abc import Iterable
 from dotenv import load_dotenv
@@ -17,7 +18,7 @@ class DrifterWormholeTypes(Enum):
     S = 'Sentinel S877'
     B = 'Barbican B735'
     C = 'Conflux C414'
-    - = 'Empty'
+    E = 'Empty'
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -223,9 +224,14 @@ async def add(ctx, system: str, wormholeType: str):
 
         for region in storage:
             if (region['system'] == system):
-                wormholes = region['wormholes']
-                region['wormholes'] += [wormholeType]
-                payload = region['system'] + '    >>    ' + drifterWormholeDesignation
+                if (wormholeType == 'E'):
+                    region['wormholes'] = ['-']
+                    payload = region['system'] + '    >>    Empty'
+                else:
+                    region['wormholes'] = [] if region['wormholes'] == ['-'] else region['wormholes']
+                    wormholes = region['wormholes']
+                    region['wormholes'] += [wormholeType]
+                    payload = region['system'] + '    >>    ' + drifterWormholeDesignation
                 region['modified'] = time.time()
 
         ## Persist data into a file
@@ -235,7 +241,7 @@ async def add(ctx, system: str, wormholeType: str):
         await ctx.send(payload)
     except KeyError as exception:
         await ctx.send(f"""
-You entered `{wormhole_type}`, which is not a valid drifter wormhole identifier.
+You entered `{wormholeType}`, which is not a valid drifter wormhole identifier.
 ```
 Supported identifiers:
 
@@ -271,7 +277,7 @@ async def remove(ctx, system: str, wormholeType: str):
         await ctx.send(payload)
     except KeyError as exception:
         await ctx.send(f"""
-You entered `{wormhole_type}`, which is not a valid drifter wormhole identifier.
+You entered `{wormholeType}`, which is not a valid drifter wormhole identifier.
 ```
 Supported identifiers:
 
@@ -290,6 +296,7 @@ async def list(ctx, region:str='Catch'):
     url = dotlanUrl + region.replace(" ", "_") + '/'
 
     payload = '```[' + region + ']' + os.linesep + os.linesep
+    payload += 'System' + '      ' + 'Drifter Wormholes' + '  ' + 'Last Updated' + os.linesep
 
     for wormhole in storage:
         if (region == wormhole['region']):
@@ -298,7 +305,8 @@ async def list(ctx, region:str='Catch'):
                 wormholes = ' '.join(wormholes)
             else:
                 wormholes = ''
-            payload += wormhole['system'] + '    >>    ' + wormholes + os.linesep
+            last_modified = '' if wormhole['modified'] == '' else datetime.utcfromtimestamp(wormhole['modified'])
+            payload += wormhole['system'] + '  >>  ' + wormholes.ljust(17) + '  ' + str(last_modified) +  os.linesep
             url += wormhole['system'] + ','
 
     payload += '```'
@@ -328,6 +336,42 @@ async def regions(ctx):
 
     payload += '```'
     await ctx.send(payload)
+
+@bot.command(help='Search for systems with specific wormhole type')
+async def search(ctx, wormholeType:str=""):
+    if CHANNEL not in ctx.message.channel.name: return
+
+    try:
+        wormholeType = wormholeType.capitalize()
+        drifterWormholeDesignation = DrifterWormholeTypes[wormholeType].value
+
+        found_result = False
+        payload = '```Region'.ljust(21) + '  ' + 'System'.ljust(6) + '  ' + 'Drifter Wormholes'.ljust(17) + '  ' + 'Last Updated' + os.linesep
+
+        for wormhole in storage:
+            if (wormholeType in wormhole['wormholes']):
+                found_result = True
+                last_modified = '' if wormhole['modified'] == '' else datetime.utcfromtimestamp(wormhole['modified'])
+                payload += wormhole['region'].ljust(18) + '  ' + wormhole['system'].ljust(6) + '  ' + wormholeType.ljust(17) + '  ' + str(last_modified) +  os.linesep
+
+        payload  += '```'
+
+        if (found_result == False):
+            payload = 'Search did not yeld any results'
+
+        await ctx.send(payload)
+    except KeyError as exception:
+        await ctx.send(f"""
+You entered `{wormholeType}`, which is not a valid drifter wormhole identifier.
+```
+Supported identifiers:
+
+V - Vidette V928
+R - Redoubt R259
+S - Sentinel S877
+B - Barbican B735
+C - Conflux C414
+```""")
 
 try:
     bot.run(TOKEN)
