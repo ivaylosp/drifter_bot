@@ -23,6 +23,17 @@ class DrifterWormholeTypes(Enum):
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 CHANNEL = os.getenv('DISCORD_CHANNEL')
+EXPIRE_AFTER = 57600
+REGION_MAP = {
+    'vale' : 'Vale_Of_The_Silent',
+    'silent' : 'Vale_Of_The_Silent',
+    'pure' : 'Pure_Blind',
+    'blind' : 'Pure_Blind',
+    'perrigen' : 'Perrigen_Falls',
+    'falls' : 'Perrigen_Falls',
+    'etherium' : 'Etherium_Reach',
+    'Reach' : 'Etherium_Reach'
+}
 
 # Specifying supported intents
 intents = discord.Intents.default()
@@ -76,28 +87,28 @@ storage = [
     {'region' : 'Fountain', 'system':'V6-NY1', 'wormholes':[], 'modified':''},
     {'region' : 'Fountain', 'system':'YRNJ-8', 'wormholes':[], 'modified':''},
     {'region' : 'Fountain', 'system':'Z-YN5Y', 'wormholes':[], 'modified':''},
-    {'region' : 'Vale_of_the_Silent', 'system':'0MV-4W', 'wormholes':[], 'modified':''},
-    {'region' : 'Vale_of_the_Silent', 'system':'1N-FJ8', 'wormholes':[], 'modified':''},
-    {'region' : 'Vale_of_the_Silent', 'system':'1VK-6B', 'wormholes':[], 'modified':''},
-    {'region' : 'Vale_of_the_Silent', 'system':'1W-0KS', 'wormholes':[], 'modified':''},
-    {'region' : 'Vale_of_the_Silent', 'system':'5T-KM3', 'wormholes':[], 'modified':''},
-    {'region' : 'Vale_of_the_Silent', 'system':'6WW-28', 'wormholes':[], 'modified':''},
-    {'region' : 'Vale_of_the_Silent', 'system':'7-K5EL', 'wormholes':[], 'modified':''},
-    {'region' : 'Vale_of_the_Silent', 'system':'BR-6XP', 'wormholes':[], 'modified':''},
-    {'region' : 'Vale_of_the_Silent', 'system':'FS-RFL', 'wormholes':[], 'modified':''},
-    {'region' : 'Vale_of_the_Silent', 'system':'H-NOU5', 'wormholes':[], 'modified':''},
-    {'region' : 'Vale_of_the_Silent', 'system':'JZV-F4', 'wormholes':[], 'modified':''},
-    {'region' : 'Vale_of_the_Silent', 'system':'LS9B-9', 'wormholes':[], 'modified':''},
-    {'region' : 'Vale_of_the_Silent', 'system':'MGAM-4', 'wormholes':[], 'modified':''},
-    {'region' : 'Vale_of_the_Silent', 'system':'MQ-O27', 'wormholes':[], 'modified':''},
-    {'region' : 'Vale_of_the_Silent', 'system':'O-LR1H', 'wormholes':[], 'modified':''},
-    {'region' : 'Vale_of_the_Silent', 'system':'P3EN-E', 'wormholes':[], 'modified':''},
-    {'region' : 'Vale_of_the_Silent', 'system':'Q-R3GP', 'wormholes':[], 'modified':''},
-    {'region' : 'Vale_of_the_Silent', 'system':'S-NJBB', 'wormholes':[], 'modified':''},
-    {'region' : 'Vale_of_the_Silent', 'system':'VI2K-J', 'wormholes':[], 'modified':''},
-    {'region' : 'Vale_of_the_Silent', 'system':'XSQ-TF', 'wormholes':[], 'modified':''},
-    {'region' : 'Vale_of_the_Silent', 'system':'Z-8Q65', 'wormholes':[], 'modified':''},
-    {'region' : 'Vale_of_the_Silent', 'system':'ZA0L-U', 'wormholes':[], 'modified':''},
+    {'region' : 'Vale_Of_The_Silent', 'system':'0MV-4W', 'wormholes':[], 'modified':''},
+    {'region' : 'Vale_Of_The_Silent', 'system':'1N-FJ8', 'wormholes':[], 'modified':''},
+    {'region' : 'Vale_Of_The_Silent', 'system':'1VK-6B', 'wormholes':[], 'modified':''},
+    {'region' : 'Vale_Of_The_Silent', 'system':'1W-0KS', 'wormholes':[], 'modified':''},
+    {'region' : 'Vale_Of_The_Silent', 'system':'5T-KM3', 'wormholes':[], 'modified':''},
+    {'region' : 'Vale_Of_The_Silent', 'system':'6WW-28', 'wormholes':[], 'modified':''},
+    {'region' : 'Vale_Of_The_Silent', 'system':'7-K5EL', 'wormholes':[], 'modified':''},
+    {'region' : 'Vale_Of_The_Silent', 'system':'BR-6XP', 'wormholes':[], 'modified':''},
+    {'region' : 'Vale_Of_The_Silent', 'system':'FS-RFL', 'wormholes':[], 'modified':''},
+    {'region' : 'Vale_Of_The_Silent', 'system':'H-NOU5', 'wormholes':[], 'modified':''},
+    {'region' : 'Vale_Of_The_Silent', 'system':'JZV-F4', 'wormholes':[], 'modified':''},
+    {'region' : 'Vale_Of_The_Silent', 'system':'LS9B-9', 'wormholes':[], 'modified':''},
+    {'region' : 'Vale_Of_The_Silent', 'system':'MGAM-4', 'wormholes':[], 'modified':''},
+    {'region' : 'Vale_Of_The_Silent', 'system':'MQ-O27', 'wormholes':[], 'modified':''},
+    {'region' : 'Vale_Of_The_Silent', 'system':'O-LR1H', 'wormholes':[], 'modified':''},
+    {'region' : 'Vale_Of_The_Silent', 'system':'P3EN-E', 'wormholes':[], 'modified':''},
+    {'region' : 'Vale_Of_The_Silent', 'system':'Q-R3GP', 'wormholes':[], 'modified':''},
+    {'region' : 'Vale_Of_The_Silent', 'system':'S-NJBB', 'wormholes':[], 'modified':''},
+    {'region' : 'Vale_Of_The_Silent', 'system':'VI2K-J', 'wormholes':[], 'modified':''},
+    {'region' : 'Vale_Of_The_Silent', 'system':'XSQ-TF', 'wormholes':[], 'modified':''},
+    {'region' : 'Vale_Of_The_Silent', 'system':'Z-8Q65', 'wormholes':[], 'modified':''},
+    {'region' : 'Vale_Of_The_Silent', 'system':'ZA0L-U', 'wormholes':[], 'modified':''},
     {'region' : 'Immensea', 'system':'6-I162', 'wormholes':[], 'modified':''},
     {'region' : 'Immensea', 'system':'AC-7LZ', 'wormholes':[], 'modified':''},
     {'region' : 'Immensea', 'system':'CJNF-J', 'wormholes':[], 'modified':''},
@@ -219,8 +230,8 @@ async def add(ctx, system: str, wormholeType: str):
     if CHANNEL not in ctx.message.channel.name: return
 
     try:
+        wormholeType = wormholeType.upper()
         drifterWormholeDesignation = DrifterWormholeTypes[wormholeType].value
-        wormholeType = wormholeType.capitalize()
 
         for region in storage:
             if (region['system'] == system):
@@ -257,8 +268,8 @@ async def remove(ctx, system: str, wormholeType: str):
     if CHANNEL not in ctx.message.channel.name: return
 
     try:
+        wormholeType = wormholeType.upper()
         drifterWormholeDesignation = DrifterWormholeTypes[wormholeType].value
-        wormholeType = wormholeType.capitalize()
         payload = 'Could not find drifter type ' + wormholeType + ' in ' + system
 
         for region in storage:
@@ -292,6 +303,10 @@ C - Conflux C414
 async def list(ctx, region:str='Catch'):
     if CHANNEL not in ctx.message.channel.name: return
 
+    # Allow list by partials
+    if region.lower() in REGION_MAP:
+        region = REGION_MAP[region.lower()]
+
     region = region.title().replace(" ","_")
     url = dotlanUrl + region.replace(" ", "_") + '/'
 
@@ -300,6 +315,10 @@ async def list(ctx, region:str='Catch'):
 
     for wormhole in storage:
         if (region == wormhole['region']):
+            # Expire wormholes after 16 hours
+            if wormhole['modified'] != '' and wormhole['modified'] + EXPIRE_AFTER < time.time():
+                wormhole['wormholes'] = []
+                wormhole['modified'] = ''
             wormholes = wormhole['wormholes']
             if isinstance(wormholes, Iterable):
                 wormholes = ' '.join(wormholes)
@@ -342,13 +361,18 @@ async def search(ctx, wormholeType:str=""):
     if CHANNEL not in ctx.message.channel.name: return
 
     try:
-        wormholeType = wormholeType.capitalize()
+        wormholeType = wormholeType.upper()
         drifterWormholeDesignation = DrifterWormholeTypes[wormholeType].value
 
         found_result = False
         payload = '```Region'.ljust(21) + '  ' + 'System'.ljust(6) + '  ' + 'Drifter Wormholes'.ljust(17) + '  ' + 'Last Updated' + os.linesep
 
         for wormhole in storage:
+            # Expire wormholes after 16 hours
+            if wormhole['modified'] != '' and wormhole['modified'] + EXPIRE_AFTER < time.time():
+                wormhole['wormholes'] = []
+                wormhole['modified'] = ''
+
             if (wormholeType in wormhole['wormholes']):
                 found_result = True
                 last_modified = '' if wormhole['modified'] == '' else datetime.utcfromtimestamp(wormhole['modified'])
