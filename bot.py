@@ -40,6 +40,8 @@ REGION_MAP = {
     'passage' : 'Outer_Passage',
     'cobalt' : 'Cobalt_Edge',
     'edge' : 'Cobalt_Edge',
+    'paragon' : 'Paragon_Soul',
+    'soul' : 'Paragon_Soul',
 }
 
 # Specifying supported intents
@@ -351,6 +353,13 @@ storage = [
     {'region' : 'Esoteria', 'system':'R-ARKN', 'wormholes':[], 'modified':''},
     {'region' : 'Esoteria', 'system':'SN9S-N', 'wormholes':[], 'modified':''},
     {'region' : 'Esoteria', 'system':'YRV-MZ', 'wormholes':[], 'modified':''},
+    {'region' : 'Paragon_Soul', 'system':'3PPT-9', 'wormholes':[], 'modified':''},
+    {'region' : 'Paragon_Soul', 'system':'ARBX-9', 'wormholes':[], 'modified':''},
+    {'region' : 'Paragon_Soul', 'system':'GQ2S-8', 'wormholes':[], 'modified':''},
+    {'region' : 'Paragon_Soul', 'system':'H8-ZTO', 'wormholes':[], 'modified':''},
+    {'region' : 'Paragon_Soul', 'system':'LD-2VL', 'wormholes':[], 'modified':''},
+    {'region' : 'Paragon_Soul', 'system':'O-MCZR', 'wormholes':[], 'modified':''},
+    {'region' : 'Paragon_Soul', 'system':'O-N589', 'wormholes':[], 'modified':''},
 ]
 # perrigan falls
 dotlanUrl = 'https://evemaps.dotlan.net/map/'
