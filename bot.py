@@ -42,6 +42,7 @@ REGION_MAP = {
     'edge' : 'Cobalt_Edge',
     'paragon' : 'Paragon_Soul',
     'soul' : 'Paragon_Soul',
+    'forge' : 'The_Forge',
 }
 
 # Specifying supported intents
@@ -360,6 +361,21 @@ storage = [
     {'region' : 'Paragon_Soul', 'system':'LD-2VL', 'wormholes':[], 'modified':''},
     {'region' : 'Paragon_Soul', 'system':'O-MCZR', 'wormholes':[], 'modified':''},
     {'region' : 'Paragon_Soul', 'system':'O-N589', 'wormholes':[], 'modified':''},
+    {'region' : 'The_Forge', 'system':'Ahtulaima', 'wormholes':[], 'modified':''},
+    {'region' : 'The_Forge', 'system':'Akkio', 'wormholes':[], 'modified':''},
+    {'region' : 'The_Forge', 'system':'Akora', 'wormholes':[], 'modified':''},
+    {'region' : 'The_Forge', 'system':'Jakanerva', 'wormholes':[], 'modified':''},
+    {'region' : 'The_Forge', 'system':'Mahtista', 'wormholes':[], 'modified':''},
+    {'region' : 'The_Forge', 'system':'Nomaa', 'wormholes':[], 'modified':''},
+    {'region' : 'The_Forge', 'system':'Nuken', 'wormholes':[], 'modified':''},
+    {'region' : 'The_Forge', 'system':'Obanen', 'wormholes':[], 'modified':''},
+    {'region' : 'The_Forge', 'system':'Ohkunen', 'wormholes':[], 'modified':''},
+    {'region' : 'The_Forge', 'system':'Osaa', 'wormholes':[], 'modified':''},
+    {'region' : 'The_Forge', 'system':'Otomainen', 'wormholes':[], 'modified':''},
+    {'region' : 'The_Forge', 'system':'Outuni', 'wormholes':[], 'modified':''},
+    {'region' : 'The_Forge', 'system':'Shihuken', 'wormholes':[], 'modified':''},
+    {'region' : 'The_Forge', 'system':'Ukkalen', 'wormholes':[], 'modified':''},
+    {'region' : 'The_Forge', 'system':'Uoyonen', 'wormholes':[], 'modified':''},
 ]
 # perrigan falls
 dotlanUrl = 'https://evemaps.dotlan.net/map/'
