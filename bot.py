@@ -45,6 +45,11 @@ REGION_MAP = {
     'forge' : 'The_Forge',
 }
 
+COLUMN_MARGIN_LENGTH = 2
+COLUMN_REGION_LENGTH = 20 + COLUMN_MARGIN_LENGTH
+COLUMN_SYSTEM_LENGTH = 9 + COLUMN_MARGIN_LENGTH
+COLUMN_DRIFTERS_LENGTH = 17 + COLUMN_MARGIN_LENGTH
+
 # Specifying supported intents
 intents = discord.Intents.default()
 intents.message_content = True
@@ -377,7 +382,7 @@ storage = [
     {'region' : 'The_Forge', 'system':'Ukkalen', 'wormholes':[], 'modified':''},
     {'region' : 'The_Forge', 'system':'Uoyonen', 'wormholes':[], 'modified':''},
 ]
-# perrigan falls
+
 dotlanUrl = 'https://evemaps.dotlan.net/map/'
 
 client = discord.Client(intents=intents)
@@ -402,12 +407,12 @@ async def add(ctx, system: str, wormholeType: str):
             if (region['system'] == system):
                 if (wormholeType == 'E'):
                     region['wormholes'] = ['-']
-                    payload = region['system'] + '    >>    Empty'
+                    payload = region['system'].ljust(COLUMN_SYSTEM_LENGTH) + '>>  Empty'
                 else:
                     region['wormholes'] = [] if region['wormholes'] == ['-'] else region['wormholes']
                     wormholes = region['wormholes']
                     region['wormholes'] += [wormholeType]
-                    payload = region['system'] + '    >>    ' + drifterWormholeDesignation
+                    payload = region['system'].ljust(COLUMN_SYSTEM_LENGTH) + '>>  ' + drifterWormholeDesignation
                 region['modified'] = time.time()
 
         ## Persist data into a file
@@ -444,7 +449,7 @@ async def remove(ctx, system: str, wormholeType: str):
                     if (wormhole == wormholeType):
                         wormholes.pop(index)
                         region['wormholes'] = wormholes
-                        payload = region['system'] + '    REMOVED    ' + drifterWormholeDesignation\
+                        payload = region['system'].ljust(COLUMN_SYSTEM_LENGTH) + 'REMOVED  ' + drifterWormholeDesignation\
 
         ## Persist data into a file
         with open("database.json", 'w') as file:
@@ -476,7 +481,7 @@ async def list(ctx, region:str='Catch'):
     url = dotlanUrl + region.replace(" ", "_") + '/'
 
     payload = '```[' + region + ']' + os.linesep + os.linesep
-    payload += 'System' + '      ' + 'Drifter Wormholes' + '  ' + 'Last Updated' + os.linesep
+    payload += 'System'.ljust(COLUMN_SYSTEM_LENGTH + 4) + 'Drifter Wormholes'.ljust(COLUMN_DRIFTERS_LENGTH) + 'Last Updated' + os.linesep
 
     for wormhole in storage:
         if (region == wormhole['region']):
@@ -490,7 +495,7 @@ async def list(ctx, region:str='Catch'):
             else:
                 wormholes = ''
             last_modified = '' if wormhole['modified'] == '' else datetime.utcfromtimestamp(wormhole['modified'])
-            payload += wormhole['system'] + '  >>  ' + wormholes.ljust(17) + '  ' + str(last_modified) +  os.linesep
+            payload += wormhole['system'].ljust(COLUMN_SYSTEM_LENGTH) + '>>  ' + wormholes.ljust(COLUMN_DRIFTERS_LENGTH) + str(last_modified) +  os.linesep
             url += wormhole['system'] + ','
 
     payload += '```'
@@ -530,7 +535,7 @@ async def search(ctx, wormholeType:str=""):
         drifterWormholeDesignation = DrifterWormholeTypes[wormholeType].value
 
         found_result = False
-        payload = '```Region'.ljust(21) + '  ' + 'System'.ljust(6) + '  ' + 'Drifter Wormholes'.ljust(17) + '  ' + 'Last Updated' + os.linesep
+        payload = '```' + 'Region'.ljust(COLUMN_REGION_LENGTH) + 'System'.ljust(COLUMN_SYSTEM_LENGTH) + 'Drifter Wormholes'.ljust(COLUMN_DRIFTERS_LENGTH) + 'Last Updated' + os.linesep
 
         for wormhole in storage:
             # Expire wormholes after 16 hours
@@ -541,7 +546,7 @@ async def search(ctx, wormholeType:str=""):
             if (wormholeType in wormhole['wormholes']):
                 found_result = True
                 last_modified = '' if wormhole['modified'] == '' else datetime.utcfromtimestamp(wormhole['modified'])
-                payload += wormhole['region'].ljust(18) + '  ' + wormhole['system'].ljust(6) + '  ' + wormholeType.ljust(17) + '  ' + str(last_modified) +  os.linesep
+                payload += wormhole['region'].ljust(COLUMN_REGION_LENGTH) + wormhole['system'].ljust(COLUMN_SYSTEM_LENGTH) + wormholeType.ljust(COLUMN_DRIFTERS_LENGTH) + str(last_modified) +  os.linesep
 
         payload  += '```'
 
@@ -562,7 +567,12 @@ B - Barbican B735
 C - Conflux C414
 ```""")
 
+@bot.command(help='Alias for search')
+async def find(ctx, wormholeType:str=""):
+    await search(ctx, wormholeType)
+
 try:
     bot.run(TOKEN)
 except:
     print(f"Something went wrong!")
+
