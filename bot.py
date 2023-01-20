@@ -47,6 +47,9 @@ REGION_MAP = {
     'period_basis' : 'Period_Basis',
     'period' : 'Period_Basis',
     'basis' : 'Period_Basis',
+    'scalding_pass' : 'Scalding_Pass',
+    'scalding' : 'Scalding_Pass',
+    'pass' : 'Scalding_Pass',
 }
 
 COLUMN_MARGIN_LENGTH = 2
@@ -416,6 +419,28 @@ storage = [
     {'region' : 'Period_Basis', 'system':'TCAG-3', 'wormholes':[], 'modified':''},
     {'region' : 'Period_Basis', 'system':'VQE-CN', 'wormholes':[], 'modified':''},
     {'region' : 'Period_Basis', 'system':'Z-M5A1', 'wormholes':[], 'modified':''},
+    {'region' : 'Scalding_Pass', 'system':'1QZ-Y9', 'wormholes':[], 'modified':''},
+    {'region' : 'Scalding_Pass', 'system':'2-KPW6', 'wormholes':[], 'modified':''},
+    {'region' : 'Scalding_Pass', 'system':'4E-EZS', 'wormholes':[], 'modified':''},
+    {'region' : 'Scalding_Pass', 'system':'6-KPAB', 'wormholes':[], 'modified':''},
+    {'region' : 'Scalding_Pass', 'system':'9PX2-F', 'wormholes':[], 'modified':''},
+    {'region' : 'Scalding_Pass', 'system':'F2-NXA', 'wormholes':[], 'modified':''},
+    {'region' : 'Scalding_Pass', 'system':'FYD-TO', 'wormholes':[], 'modified':''},
+    {'region' : 'Scalding_Pass', 'system':'GN-PDU', 'wormholes':[], 'modified':''},
+    {'region' : 'Scalding_Pass', 'system':'H5N-V7', 'wormholes':[], 'modified':''},
+    {'region' : 'Scalding_Pass', 'system':'IAK-JW', 'wormholes':[], 'modified':''},
+    {'region' : 'Scalding_Pass', 'system':'JLO-Z3', 'wormholes':[], 'modified':''},
+    {'region' : 'Scalding_Pass', 'system':'K7-LDX', 'wormholes':[], 'modified':''},
+    {'region' : 'Scalding_Pass', 'system':'LBC-AW', 'wormholes':[], 'modified':''},
+    {'region' : 'Scalding_Pass', 'system':'LQ-OAI', 'wormholes':[], 'modified':''},
+    {'region' : 'Scalding_Pass', 'system':'NSBE-L', 'wormholes':[], 'modified':''},
+    {'region' : 'Scalding_Pass', 'system':'Q-K2T7', 'wormholes':[], 'modified':''},
+    {'region' : 'Scalding_Pass', 'system':'Q-NA5H', 'wormholes':[], 'modified':''},
+    {'region' : 'Scalding_Pass', 'system':'U2-28D', 'wormholes':[], 'modified':''},
+    {'region' : 'Scalding_Pass', 'system':'V-F6DQ', 'wormholes':[], 'modified':''},
+    {'region' : 'Scalding_Pass', 'system':'WFFE-4', 'wormholes':[], 'modified':''},
+    {'region' : 'Scalding_Pass', 'system':'WV0D-1', 'wormholes':[], 'modified':''},
+    {'region' : 'Scalding_Pass', 'system':'X9V-15', 'wormholes':[], 'modified':''},
 ]
 
 dotlanUrl = 'https://evemaps.dotlan.net/map/'
