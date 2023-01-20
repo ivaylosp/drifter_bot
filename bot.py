@@ -43,6 +43,10 @@ REGION_MAP = {
     'paragon' : 'Paragon_Soul',
     'soul' : 'Paragon_Soul',
     'forge' : 'The_Forge',
+    'insmother' : 'Insmother',
+    'period_basis' : 'Period_Basis',
+    'period' : 'Period_Basis',
+    'basis' : 'Period_Basis',
 }
 
 COLUMN_MARGIN_LENGTH = 2
@@ -381,6 +385,37 @@ storage = [
     {'region' : 'The_Forge', 'system':'Shihuken', 'wormholes':[], 'modified':''},
     {'region' : 'The_Forge', 'system':'Ukkalen', 'wormholes':[], 'modified':''},
     {'region' : 'The_Forge', 'system':'Uoyonen', 'wormholes':[], 'modified':''},
+    {'region' : 'Insmother', 'system':'0-VG7A', 'wormholes':[], 'modified':''},
+    {'region' : 'Insmother', 'system':'1ZF-PJ', 'wormholes':[], 'modified':''},
+    {'region' : 'Insmother', 'system':'4CJ-AC', 'wormholes':[], 'modified':''},
+    {'region' : 'Insmother', 'system':'5-2PQU', 'wormholes':[], 'modified':''},
+    {'region' : 'Insmother', 'system':'5C-RPA', 'wormholes':[], 'modified':''},
+    {'region' : 'Insmother', 'system':'88A-RA', 'wormholes':[], 'modified':''},
+    {'region' : 'Insmother', 'system':'B-II34', 'wormholes':[], 'modified':''},
+    {'region' : 'Insmother', 'system':'C1G-XC', 'wormholes':[], 'modified':''},
+    {'region' : 'Insmother', 'system':'EKPB-3', 'wormholes':[], 'modified':''},
+    {'region' : 'Insmother', 'system':'EUU-4N', 'wormholes':[], 'modified':''},
+    {'region' : 'Insmother', 'system':'F3-8X2', 'wormholes':[], 'modified':''},
+    {'region' : 'Insmother', 'system':'F39H-1', 'wormholes':[], 'modified':''},
+    {'region' : 'Insmother', 'system':'GDHN-K', 'wormholes':[], 'modified':''},
+    {'region' : 'Insmother', 'system':'GK5Z-T', 'wormholes':[], 'modified':''},
+    {'region' : 'Insmother', 'system':'HL-VZX', 'wormholes':[], 'modified':''},
+    {'region' : 'Insmother', 'system':'KD-KPR', 'wormholes':[], 'modified':''},
+    {'region' : 'Insmother', 'system':'L5-UWT', 'wormholes':[], 'modified':''},
+    {'region' : 'Insmother', 'system':'MOCW-2', 'wormholes':[], 'modified':''},
+    {'region' : 'Insmother', 'system':'N-O53U', 'wormholes':[], 'modified':''},
+    {'region' : 'Insmother', 'system':'N7-BIY', 'wormholes':[], 'modified':''},
+    {'region' : 'Insmother', 'system':'O-7LAI', 'wormholes':[], 'modified':''},
+    {'region' : 'Insmother', 'system':'RD-FWY', 'wormholes':[], 'modified':''},
+    {'region' : 'Insmother', 'system':'V-QXXK', 'wormholes':[], 'modified':''},
+    {'region' : 'Insmother', 'system':'VBPT-T', 'wormholes':[], 'modified':''},
+    {'region' : 'Insmother', 'system':'XQP-9C', 'wormholes':[], 'modified':''},
+    {'region' : 'Period_Basis', 'system':'08S-39', 'wormholes':[], 'modified':''},
+    {'region' : 'Period_Basis', 'system':'E-DOF2', 'wormholes':[], 'modified':''},
+    {'region' : 'Period_Basis', 'system':'RYQC-I', 'wormholes':[], 'modified':''},
+    {'region' : 'Period_Basis', 'system':'TCAG-3', 'wormholes':[], 'modified':''},
+    {'region' : 'Period_Basis', 'system':'VQE-CN', 'wormholes':[], 'modified':''},
+    {'region' : 'Period_Basis', 'system':'Z-M5A1', 'wormholes':[], 'modified':''},
 ]
 
 dotlanUrl = 'https://evemaps.dotlan.net/map/'
@@ -469,8 +504,8 @@ B - Barbican B735
 C - Conflux C414
 ```""")
 
-@bot.command(help='List all drifter wormholes for a region with Catch as default')
-async def list(ctx, region:str='Catch'):
+@bot.command(help='List all drifter wormholes for a region with Paragon Soul as default')
+async def list(ctx, region:str='Paragon_Soul'):
     if CHANNEL not in ctx.message.channel.name: return
 
     # Allow list by partials
