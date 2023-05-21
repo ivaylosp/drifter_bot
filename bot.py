@@ -58,7 +58,11 @@ REGION_MAP = {
     'cloud_ring' : 'Cloud_Ring',
     'branch' : 'Branch',
     'venal' : 'Venal',
-    'tenal' : 'Tenal'
+    'tenal' : 'Tenal',
+    'great' : 'Great_Wildlands',
+    'wild' : 'Great_Wildlands',
+    'wildlands' : 'Great_Wildlands',
+    'great_wildlands' : 'Great_Wildlands'
 }
 
 COLUMN_MARGIN_LENGTH = 2
@@ -527,6 +531,26 @@ storage = [
     {'region' : 'Tenal', 'system':'T-K10W', 'wormholes':[], 'modified':''},
     {'region' : 'Tenal', 'system':'WV-0R2', 'wormholes':[], 'modified':''},
     {'region' : 'Tenal', 'system':'ZK-YQ3', 'wormholes':[], 'modified':''},
+    {'region' : 'Great_Wildlands', 'system':'4M-P1I', 'wormholes':[], 'modified':''},
+    {'region' : 'Great_Wildlands', 'system':'7Q-8Z2', 'wormholes':[], 'modified':''},
+    {'region' : 'Great_Wildlands', 'system':'8DL-CP', 'wormholes':[], 'modified':''},
+    {'region' : 'Great_Wildlands', 'system':'B-VIP9', 'wormholes':[], 'modified':''},
+    {'region' : 'Great_Wildlands', 'system':'DE71-9', 'wormholes':[], 'modified':''},
+    {'region' : 'Great_Wildlands', 'system':'F5-CGW', 'wormholes':[], 'modified':''},
+    {'region' : 'Great_Wildlands', 'system':'HB-1NJ', 'wormholes':[], 'modified':''},
+    {'region' : 'Great_Wildlands', 'system':'IX8-JB', 'wormholes':[], 'modified':''},
+    {'region' : 'Great_Wildlands', 'system':'N-RAEL', 'wormholes':[], 'modified':''},
+    {'region' : 'Great_Wildlands', 'system':'NE-3GR', 'wormholes':[], 'modified':''},
+    {'region' : 'Great_Wildlands', 'system':'QM-20X', 'wormholes':[], 'modified':''},
+    {'region' : 'Great_Wildlands', 'system':'QQ3-YI', 'wormholes':[], 'modified':''},
+    {'region' : 'Great_Wildlands', 'system':'R-ESG0', 'wormholes':[], 'modified':''},
+    {'region' : 'Great_Wildlands', 'system':'TET3-B', 'wormholes':[], 'modified':''},
+    {'region' : 'Great_Wildlands', 'system':'UNJ-GX', 'wormholes':[], 'modified':''},
+    {'region' : 'Great_Wildlands', 'system':'UT-UZB', 'wormholes':[], 'modified':''},
+    {'region' : 'Great_Wildlands', 'system':'V89M-R', 'wormholes':[], 'modified':''},
+    {'region' : 'Great_Wildlands', 'system':'Y4-GQV', 'wormholes':[], 'modified':''},
+    {'region' : 'Great_Wildlands', 'system':'YUY-LM', 'wormholes':[], 'modified':''},
+    {'region' : 'Great_Wildlands', 'system':'ZM-DNR', 'wormholes':[], 'modified':''},
 ]
 
 dotlanUrl = 'https://evemaps.dotlan.net/map/'
