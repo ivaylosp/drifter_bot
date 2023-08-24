@@ -11,6 +11,7 @@ from collections.abc import Iterable
 from dotenv import load_dotenv
 from discord.ext import commands
 from enum import Enum
+from operator import itemgetter
 
 class DrifterWormholeTypes(Enum):
     V = 'Vidette V928'
@@ -64,6 +65,7 @@ REGION_MAP = {
     'wildlands' : 'Great_Wildlands',
     'great_wildlands' : 'Great_Wildlands',
     'metropolis' : 'Metropolis',
+    'querious' : 'Querious'
 }
 
 COLUMN_MARGIN_LENGTH = 2
@@ -583,6 +585,22 @@ storage = [
     {'region' : 'Metropolis', 'system':'Sirekur', 'wormholes':[], 'modified':''},
     {'region' : 'Metropolis', 'system':'Situner', 'wormholes':[], 'modified':''},
     {'region' : 'Metropolis', 'system':'Tabbetzur', 'wormholes':[], 'modified':''},
+    {'region' : 'Querious', 'system':'3D5K-R', 'wormholes':[], 'modified':''},
+    {'region' : 'Querious', 'system':'8B-SAJ', 'wormholes':[], 'modified':''},
+    {'region' : 'Querious', 'system':'A-BO4V', 'wormholes':[], 'modified':''},
+    {'region' : 'Querious', 'system':'A3-LOG', 'wormholes':[], 'modified':''},
+    {'region' : 'Querious', 'system':'E-VKJV', 'wormholes':[], 'modified':''},
+    {'region' : 'Querious', 'system':'ED-L9T', 'wormholes':[], 'modified':''},
+    {'region' : 'Querious', 'system':'KEJY-U', 'wormholes':[], 'modified':''},
+    {'region' : 'Querious', 'system':'MKD-O8', 'wormholes':[], 'modified':''},
+    {'region' : 'Querious', 'system':'O3L-95', 'wormholes':[], 'modified':''},
+    {'region' : 'Querious', 'system':'OGY-6D', 'wormholes':[], 'modified':''},
+    {'region' : 'Querious', 'system':'RF-CN3', 'wormholes':[], 'modified':''},
+    {'region' : 'Querious', 'system':'TV8-HS', 'wormholes':[], 'modified':''},
+    {'region' : 'Querious', 'system':'UVHO-F', 'wormholes':[], 'modified':''},
+    {'region' : 'Querious', 'system':'UYU-VV', 'wormholes':[], 'modified':''},
+    {'region' : 'Querious', 'system':'W6V-VM', 'wormholes':[], 'modified':''},
+    {'region' : 'Querious', 'system':'Z-UZZN', 'wormholes':[], 'modified':''},
 ]
 
 dotlanUrl = 'https://evemaps.dotlan.net/map/'
@@ -728,7 +746,7 @@ async def regions(ctx):
     regions = []
     payload = '```[Regions]' + os.linesep + os.linesep
 
-    for region in storage:
+    for region in sorted(storage, key=itemgetter('region')):
         if region['region'] not in regions:
             regions.append(region['region'])
             payload += region['region'] + os.linesep
