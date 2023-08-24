@@ -62,7 +62,8 @@ REGION_MAP = {
     'great' : 'Great_Wildlands',
     'wild' : 'Great_Wildlands',
     'wildlands' : 'Great_Wildlands',
-    'great_wildlands' : 'Great_Wildlands'
+    'great_wildlands' : 'Great_Wildlands',
+    'metropolis' : 'Metropolis',
 }
 
 COLUMN_MARGIN_LENGTH = 2
@@ -551,6 +552,37 @@ storage = [
     {'region' : 'Great_Wildlands', 'system':'Y4-GQV', 'wormholes':[], 'modified':''},
     {'region' : 'Great_Wildlands', 'system':'YUY-LM', 'wormholes':[], 'modified':''},
     {'region' : 'Great_Wildlands', 'system':'ZM-DNR', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Agtver', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Aldilur', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Ardar', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Arifsdald', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Arnstur', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Aset', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Asgeir', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Atonder', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Auner', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Earwik', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Egbonbet', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Egmar', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Eram', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Erindur', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Erstet', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Erstur', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Eszur', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Eygfe', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Fildar', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Hakeri', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Hilfhurmur', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Hjoramold', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Hodrold', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Jondik', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Lasleinur', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Lirerim', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Nakugard', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Nedegulf', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Sirekur', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Situner', 'wormholes':[], 'modified':''},
+    {'region' : 'Metropolis', 'system':'Tabbetzur', 'wormholes':[], 'modified':''},
 ]
 
 dotlanUrl = 'https://evemaps.dotlan.net/map/'
@@ -566,12 +598,16 @@ if (file_exists):
         storage = json.load(file)
 
 @bot.command(help='Register new drifter wormhole to the database')
-async def add(ctx, system: str, wormholeType: str):
+async def add(ctx, system: str, wormholeType: str, endOfLife: str=''):
     if CHANNEL not in ctx.message.channel.name: return
 
     try:
         wormholeType = wormholeType.upper()
         drifterWormholeDesignation = DrifterWormholeTypes[wormholeType].value
+        eol = ''
+
+        if endOfLife == 'eol':
+            eol = '*'    
 
         for region in storage:
             if (region['system'] == system):
@@ -580,8 +616,7 @@ async def add(ctx, system: str, wormholeType: str):
                     payload = region['system'].ljust(COLUMN_SYSTEM_LENGTH) + '>>  Empty'
                 else:
                     region['wormholes'] = [] if region['wormholes'] == ['-'] else region['wormholes']
-                    wormholes = region['wormholes']
-                    region['wormholes'] += [wormholeType]
+                    region['wormholes'] += [wormholeType+eol]
                     payload = region['system'].ljust(COLUMN_SYSTEM_LENGTH) + '>>  ' + drifterWormholeDesignation
                 region['modified'] = time.time()
 
@@ -609,7 +644,7 @@ async def remove(ctx, system: str, wormholeType: str):
 
     try:
         wormholeType = wormholeType.upper()
-        drifterWormholeDesignation = DrifterWormholeTypes[wormholeType].value
+        drifterWormholeDesignation = DrifterWormholeTypes[wormholeType.replace('*', '')].value
         payload = 'Could not find drifter type ' + wormholeType + ' in ' + system
 
         for region in storage:
@@ -718,10 +753,15 @@ async def search(ctx, wormholeType:str=""):
                 wormhole['wormholes'] = []
                 wormhole['modified'] = ''
 
-            if (wormholeType in wormhole['wormholes']):
+            eol = ''
+
+            if (wormholeType + '*' in wormhole['wormholes']):
+                eol = '*'
+
+            if (wormholeType in wormhole['wormholes'] or eol == '*'):
                 found_result = True
                 last_modified = '' if wormhole['modified'] == '' else datetime.utcfromtimestamp(wormhole['modified'])
-                payload += wormhole['region'].ljust(COLUMN_REGION_LENGTH) + wormhole['system'].ljust(COLUMN_SYSTEM_LENGTH) + wormholeType.ljust(COLUMN_DRIFTERS_LENGTH) + str(last_modified) +  os.linesep
+                payload += wormhole['region'].ljust(COLUMN_REGION_LENGTH) + wormhole['system'].ljust(COLUMN_SYSTEM_LENGTH) + (wormholeType+eol).ljust(COLUMN_DRIFTERS_LENGTH) + str(last_modified) +  os.linesep
 
         payload  += '```'
 
