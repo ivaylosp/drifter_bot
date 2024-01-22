@@ -4,6 +4,8 @@ import discord
 import hashlib
 import json
 import time
+import logging
+import sys
 
 from datetime import datetime
 from os.path import exists
@@ -608,6 +610,12 @@ dotlanUrl = 'https://evemaps.dotlan.net/map/'
 client = discord.Client(intents=intents)
 
 bot = commands.Bot(command_prefix='!', intents=intents)
+
+logger = logging.getLogger('discord')
+logger.setLevel(logging.INFO)
+handler = logging.StreamHandler(sys.stdout)
+handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
+logger.addHandler(handler)
 
 file_exists = exists('database.json')
 
