@@ -67,7 +67,9 @@ REGION_MAP = {
     'wildlands' : 'Great_Wildlands',
     'great_wildlands' : 'Great_Wildlands',
     'metropolis' : 'Metropolis',
-    'querious' : 'Querious'
+    'querious' : 'Querious',
+    'omist': 'Omist',
+    'detorid': 'Detorid'
 }
 
 COLUMN_MARGIN_LENGTH = 2
@@ -603,6 +605,43 @@ storage = [
     {'region' : 'Querious', 'system':'UYU-VV', 'wormholes':[], 'modified':''},
     {'region' : 'Querious', 'system':'W6V-VM', 'wormholes':[], 'modified':''},
     {'region' : 'Querious', 'system':'Z-UZZN', 'wormholes':[], 'modified':''},
+    {'region' : 'Omist', 'system':'7-8EOE', 'wormholes':[], 'modified':''},
+    {'region' : 'Omist', 'system':'99-0GS', 'wormholes':[], 'modified':''},
+    {'region' : 'Omist', 'system':'9MWZ-B', 'wormholes':[], 'modified':''},
+    {'region' : 'Omist', 'system':'C-WPWH', 'wormholes':[], 'modified':''},
+    {'region' : 'Omist', 'system':'DJK-67', 'wormholes':[], 'modified':''},
+    {'region' : 'Omist', 'system':'H90-C9', 'wormholes':[], 'modified':''},
+    {'region' : 'Omist', 'system':'KR8-27', 'wormholes':[], 'modified':''},
+    {'region' : 'Omist', 'system':'L-AS00', 'wormholes':[], 'modified':''},
+    {'region' : 'Omist', 'system':'M9-FIB', 'wormholes':[], 'modified':''},
+    {'region' : 'Omist', 'system':'OKEO-X', 'wormholes':[], 'modified':''},
+    {'region' : 'Omist', 'system':'X-EHHD', 'wormholes':[], 'modified':''},
+    {'region' : 'Omist', 'system':'Z-7OK1', 'wormholes':[], 'modified':''},
+    {'region' : 'Detorid', 'system':'0-G8NO', 'wormholes':[], 'modified':''},
+    {'region' : 'Detorid', 'system':'1KAW-T', 'wormholes':[], 'modified':''},
+    {'region' : 'Detorid', 'system':'3-LJW3', 'wormholes':[], 'modified':''},
+    {'region' : 'Detorid', 'system':'4NDT-W', 'wormholes':[], 'modified':''},
+    {'region' : 'Detorid', 'system':'5J4K-9', 'wormholes':[], 'modified':''},
+    {'region' : 'Detorid', 'system':'62O-UE', 'wormholes':[], 'modified':''},
+    {'region' : 'Detorid', 'system':'7-A6XV', 'wormholes':[], 'modified':''},
+    {'region' : 'Detorid', 'system':'9-02G0', 'wormholes':[], 'modified':''},
+    {'region' : 'Detorid', 'system':'9N-0HF', 'wormholes':[], 'modified':''},
+    {'region' : 'Detorid', 'system':'BOZ1-O', 'wormholes':[], 'modified':''},
+    {'region' : 'Detorid', 'system':'D-0UI0', 'wormholes':[], 'modified':''},
+    {'region' : 'Detorid', 'system':'E51-JE', 'wormholes':[], 'modified':''},
+    {'region' : 'Detorid', 'system':'GC-LTF', 'wormholes':[], 'modified':''},
+    {'region' : 'Detorid', 'system':'GR-X26', 'wormholes':[], 'modified':''},
+    {'region' : 'Detorid', 'system':'I-9GI1', 'wormholes':[], 'modified':''},
+    {'region' : 'Detorid', 'system':'L-QQ6P', 'wormholes':[], 'modified':''},
+    {'region' : 'Detorid', 'system':'L8-WNE', 'wormholes':[], 'modified':''},
+    {'region' : 'Detorid', 'system':'NB-ALM', 'wormholes':[], 'modified':''},
+    {'region' : 'Detorid', 'system':'P7MI-T', 'wormholes':[], 'modified':''},
+    {'region' : 'Detorid', 'system':'PQRE-W', 'wormholes':[], 'modified':''},
+    {'region' : 'Detorid', 'system':'RZ-PIY', 'wormholes':[], 'modified':''},
+    {'region' : 'Detorid', 'system':'S-51XG', 'wormholes':[], 'modified':''},
+    {'region' : 'Detorid', 'system':'SY-UWN', 'wormholes':[], 'modified':''},
+    {'region' : 'Detorid', 'system':'T-0JWP', 'wormholes':[], 'modified':''},
+    {'region' : 'Detorid', 'system':'TYB-69', 'wormholes':[], 'modified':''}
 ]
 
 dotlanUrl = 'https://evemaps.dotlan.net/map/'
