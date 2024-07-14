@@ -641,7 +641,15 @@ storage = [
     {'region' : 'Detorid', 'system':'S-51XG', 'wormholes':[], 'modified':''},
     {'region' : 'Detorid', 'system':'SY-UWN', 'wormholes':[], 'modified':''},
     {'region' : 'Detorid', 'system':'T-0JWP', 'wormholes':[], 'modified':''},
-    {'region' : 'Detorid', 'system':'TYB-69', 'wormholes':[], 'modified':''}
+    {'region' : 'Detorid', 'system':'TYB-69', 'wormholes':[], 'modified':''},
+    {'region' : 'Cache', 'system':'0LY-W1', 'wormholes':[], 'modified':''},
+    {'region' : 'Cache', 'system':'I6-SYN', 'wormholes':[], 'modified':''},
+    {'region' : 'Cache', 'system':'JZ-B5Y', 'wormholes':[], 'modified':''},
+    {'region' : 'Cache', 'system':'LMM7-L', 'wormholes':[], 'modified':''},
+    {'region' : 'Cache', 'system':'M-CNUD', 'wormholes':[], 'modified':''},
+    {'region' : 'Cache', 'system':'NG-M8K', 'wormholes':[], 'modified':''},
+    {'region' : 'Cache', 'system':'U-QMOA', 'wormholes':[], 'modified':''},
+    {'region' : 'Cache', 'system':'U93O-A', 'wormholes':[], 'modified':''}
 ]
 
 dotlanUrl = 'https://evemaps.dotlan.net/map/'
