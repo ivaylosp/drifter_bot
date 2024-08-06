@@ -69,7 +69,8 @@ REGION_MAP = {
     'metropolis' : 'Metropolis',
     'querious' : 'Querious',
     'omist': 'Omist',
-    'detorid': 'Detorid'
+    'detorid': 'Detorid',
+    'tenerifis': 'Tenerifis'
 }
 
 COLUMN_MARGIN_LENGTH = 2
@@ -649,7 +650,26 @@ storage = [
     {'region' : 'Cache', 'system':'M-CNUD', 'wormholes':[], 'modified':''},
     {'region' : 'Cache', 'system':'NG-M8K', 'wormholes':[], 'modified':''},
     {'region' : 'Cache', 'system':'U-QMOA', 'wormholes':[], 'modified':''},
-    {'region' : 'Cache', 'system':'U93O-A', 'wormholes':[], 'modified':''}
+    {'region' : 'Cache', 'system':'U93O-A', 'wormholes':[], 'modified':''},
+    {'region' : 'Tenerifis', 'system':'0P-U0Q', 'wormholes':[], 'modified':''},
+    {'region' : 'Tenerifis', 'system':'16AM-3', 'wormholes':[], 'modified':''},
+    {'region' : 'Tenerifis', 'system':'3L3N-X', 'wormholes':[], 'modified':''},
+    {'region' : 'Tenerifis', 'system':'9-980U', 'wormholes':[], 'modified':''},
+    {'region' : 'Tenerifis', 'system':'BW-WJ2', 'wormholes':[], 'modified':''},
+    {'region' : 'Tenerifis', 'system':'F-ZBO0', 'wormholes':[], 'modified':''},
+    {'region' : 'Tenerifis', 'system':'FE-6YQ', 'wormholes':[], 'modified':''},
+    {'region' : 'Tenerifis', 'system':'H-HWQR', 'wormholes':[], 'modified':''},
+    {'region' : 'Tenerifis', 'system':'JI1-SY', 'wormholes':[], 'modified':''},
+    {'region' : 'Tenerifis', 'system':'KW-OAM', 'wormholes':[], 'modified':''},
+    {'region' : 'Tenerifis', 'system':'MS1-KJ', 'wormholes':[], 'modified':''},
+    {'region' : 'Tenerifis', 'system':'NZW-ZO', 'wormholes':[], 'modified':''},
+    {'region' : 'Tenerifis', 'system':'PEK-8Z', 'wormholes':[], 'modified':''},
+    {'region' : 'Tenerifis', 'system':'T-AKQZ', 'wormholes':[], 'modified':''},
+    {'region' : 'Tenerifis', 'system':'WB-AYY', 'wormholes':[], 'modified':''},
+    {'region' : 'Tenerifis', 'system':'Y-EQ0C', 'wormholes':[], 'modified':''},
+    {'region' : 'Tenerifis', 'system':'Y-ORBJ', 'wormholes':[], 'modified':''},
+    {'region' : 'Tenerifis', 'system':'ZD1-Z2', 'wormholes':[], 'modified':''},
+    {'region' : 'Tenerifis', 'system':'ZO-P5K', 'wormholes':[], 'modified':''}
 ]
 
 dotlanUrl = 'https://evemaps.dotlan.net/map/'
