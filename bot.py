@@ -70,7 +70,10 @@ REGION_MAP = {
     'querious' : 'Querious',
     'omist': 'Omist',
     'detorid': 'Detorid',
-    'tenerifis': 'Tenerifis'
+    'tenerifis': 'Tenerifis',
+    'wicked': 'Wicked_Creek',
+    'wicked_creek': 'Wicked_Creek',
+    'creek': 'Wicked_Creek'
 }
 
 COLUMN_MARGIN_LENGTH = 2
@@ -669,7 +672,22 @@ storage = [
     {'region' : 'Tenerifis', 'system':'Y-EQ0C', 'wormholes':[], 'modified':''},
     {'region' : 'Tenerifis', 'system':'Y-ORBJ', 'wormholes':[], 'modified':''},
     {'region' : 'Tenerifis', 'system':'ZD1-Z2', 'wormholes':[], 'modified':''},
-    {'region' : 'Tenerifis', 'system':'ZO-P5K', 'wormholes':[], 'modified':''}
+    {'region' : 'Tenerifis', 'system':'ZO-P5K', 'wormholes':[], 'modified':''},
+    {'region' : 'Wicked_Creek', 'system':'3Q-VZA', 'wormholes':[], 'modified':''},
+    {'region' : 'Wicked_Creek', 'system':'4-EFLU', 'wormholes':[], 'modified':''},
+    {'region' : 'Wicked_Creek', 'system':'5NQI-E', 'wormholes':[], 'modified':''},
+    {'region' : 'Wicked_Creek', 'system':'8-OZU1', 'wormholes':[], 'modified':''},
+    {'region' : 'Wicked_Creek', 'system':'EIH-IU', 'wormholes':[], 'modified':''},
+    {'region' : 'Wicked_Creek', 'system':'G9L-LP', 'wormholes':[], 'modified':''},
+    {'region' : 'Wicked_Creek', 'system':'GPD5-0', 'wormholes':[], 'modified':''},
+    {'region' : 'Wicked_Creek', 'system':'HD-AJ7', 'wormholes':[], 'modified':''},
+    {'region' : 'Wicked_Creek', 'system':'HPBE-D', 'wormholes':[], 'modified':''},
+    {'region' : 'Wicked_Creek', 'system':'J-RXYN', 'wormholes':[], 'modified':''},
+    {'region' : 'Wicked_Creek', 'system':'J7-BDX', 'wormholes':[], 'modified':''},
+    {'region' : 'Wicked_Creek', 'system':'JEQG-7', 'wormholes':[], 'modified':''},
+    {'region' : 'Wicked_Creek', 'system':'JQU-KY', 'wormholes':[], 'modified':''},
+    {'region' : 'Wicked_Creek', 'system':'R0-DMM', 'wormholes':[], 'modified':''},
+    {'region' : 'Wicked_Creek', 'system':'U104-3', 'wormholes':[], 'modified':''}
 ]
 
 dotlanUrl = 'https://evemaps.dotlan.net/map/'
