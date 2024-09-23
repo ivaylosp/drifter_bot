@@ -621,6 +621,7 @@ storage = [
     {'region' : 'Omist', 'system':'OKEO-X', 'wormholes':[], 'modified':''},
     {'region' : 'Omist', 'system':'X-EHHD', 'wormholes':[], 'modified':''},
     {'region' : 'Omist', 'system':'Z-7OK1', 'wormholes':[], 'modified':''},
+    {'region' : 'Omist', 'system':'PEM-LC', 'wormholes':[], 'modified':''},
     {'region' : 'Detorid', 'system':'0-G8NO', 'wormholes':[], 'modified':''},
     {'region' : 'Detorid', 'system':'1KAW-T', 'wormholes':[], 'modified':''},
     {'region' : 'Detorid', 'system':'3-LJW3', 'wormholes':[], 'modified':''},
