@@ -74,7 +74,7 @@ async def list(ctx, region:str='Paragon Soul', alliance_only:int=0):
         case drifter_scouts.channel:
             await drifter_scouts.region_wormholes(ctx, region)
         case mercenary_dens.channel:
-            alliance_only = True if alliance_only == 1 else 0
+            alliance_only = True if alliance_only == 1 else False
             await mercenary_dens.region_dens(ctx, region, alliance_only=alliance_only)
         case _:
             return

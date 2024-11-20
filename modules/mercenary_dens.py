@@ -73,6 +73,12 @@ async def region_dens(ctx, region:str, reinforced:bool=False, alliance_only:bool
         if (alliance_only == True and mercenary_den['system'] not in ALLIANCE_SYSTEMS):
             continue;
 
+        if (type(mercenary_den['reinforced']) == str and mercenary_den['reinforced'] == "ELAPSED"):
+            mercenary_den['reinforced'] = "-"
+
+        if (isinstance(mercenary_den['reinforced'], float) and mercenary_den['reinforced'] < time.time()):
+            mercenary_den['reinforced'] = "ELAPSED"
+        
         ordered_dens.append(mercenary_den)
 
     ordered_dens.sort(reverse=False, key=order_by_reinforcement)
@@ -81,9 +87,14 @@ async def region_dens(ctx, region:str, reinforced:bool=False, alliance_only:bool
         if (mercenary_den['system'] not in highlighted_systems):
             highlighted_systems.append(mercenary_den['system'])
 
+        if (isinstance(mercenary_den['reinforced'], float)):
+            reinforced_column_value = datetime.fromtimestamp(mercenary_den['reinforced'], tz=timezone.utc).strftime("%Y-%m-%d %H:%M")
+        else:
+            reinforced_column_value = mercenary_den['reinforced']
+
         column_location = ('[P' + str(mercenary_den['planet_number']).rjust(2, "0") + "] " + mercenary_den['system'])
         column_region = mercenary_den['region']
-        column_reinforced = datetime.fromtimestamp(mercenary_den['reinforced'], tz=timezone.utc).strftime("%Y-%m-%d %H:%M") if isinstance(mercenary_den['reinforced'], float) else '-'
+        column_reinforced = reinforced_column_value
         column_last_updated = datetime.fromtimestamp(mercenary_den['modified'], tz=timezone.utc).strftime("%Y-%m-%d %H:%M") if isinstance(mercenary_den['modified'], float) else '-'
         column_owner = mercenary_den['owner'] if len(mercenary_den['owner']) > 0 else '-'
 
