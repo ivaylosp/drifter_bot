@@ -209,7 +209,7 @@ if (file_exists):
         DATABASE = json.load(file)
 else:
     print("No database file present. Initializing database into memory...")
-    DATABASE = []
+    DATABASE = DATABASE_DEFAULT
 
 # Defining all constants
 channel = os.environ.get('DISCORD_MERCENARY_CHANNEL')
