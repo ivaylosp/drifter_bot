@@ -60,15 +60,38 @@ async def add(ctx, *arguments):
         case _:
             return
 
-@bot.command(help='Remove a drifter wormhole from the database')
-async def remove(ctx, system: str = '', wormholeType: str = ''):
+@bot.command(help='Remove drifter wormhole or mercenary den from the database')
+async def remove(ctx, *arguments):
     match ctx.message.channel.name:
         case drifter_scouts.channel:
-            await drifter_scouts.remove(ctx, system, wormholeType)
+            system = ""
+            wormhole_type = ""
+
+            for index, value in enumerate(arguments):
+                match (index):
+                    case 0: system = value
+                    case 1: wormhole_type = value
+                    case _:
+                        print("Unsupported index with value {value}")
+
+            await drifter_scouts.remove(ctx, system, wormhole_type)
+        case mercenary_dens.channel:
+            
+            system = ""
+            planet_number = 0
+
+            for index, value in enumerate(arguments):
+                match (index):
+                    case 0: system = value
+                    case 1: planet_number = value
+                    case _:
+                        print("Unsupported index with value {value}")
+
+            await mercenary_dens.clear_mercenary_den(ctx, system, planet_number)
         case _:
             return
 
-@bot.command(help='List all drifter wormholes for a region with Paragon Soul as default')
+@bot.command(help='List all drifter wormholes or mercenary dens for a region with Paragon Soul as default')
 async def list(ctx, region:str='Paragon Soul', alliance_only:int=0):
     match ctx.message.channel.name:
         case drifter_scouts.channel:
@@ -79,7 +102,7 @@ async def list(ctx, region:str='Paragon Soul', alliance_only:int=0):
         case _:
             return
 
-@bot.command(help='List all drifter wormholes for a region with Paragon Soul as default')
+@bot.command(help='List all reinforced mercenary dens')
 async def reffed(ctx):
     match ctx.message.channel.name:
         case mercenary_dens.channel:

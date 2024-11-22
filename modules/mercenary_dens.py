@@ -68,6 +68,7 @@ async def region_dens(ctx, region:str, reinforced:bool=False, alliance_only:bool
             continue;
         
         if (reinforced == True and mercenary_den['reinforced'] in ["","-"]):
+            mercenary_den['owner'] = ''
             continue;
         
         if (alliance_only == True and mercenary_den['system'] not in ALLIANCE_SYSTEMS):
@@ -75,6 +76,7 @@ async def region_dens(ctx, region:str, reinforced:bool=False, alliance_only:bool
 
         if (type(mercenary_den['reinforced']) == str and mercenary_den['reinforced'] == "ELAPSED"):
             mercenary_den['reinforced'] = "-"
+            mercenary_den['owner'] = ''
 
         if (isinstance(mercenary_den['reinforced'], float) and mercenary_den['reinforced'] < time.time()):
             mercenary_den['reinforced'] = "ELAPSED"
@@ -134,6 +136,22 @@ async def list_regions(ctx):
 
     payload += '```'
     await ctx.send(payload)
+
+async def clear_mercenary_den(ctx, system:str, planet_number:int):
+    for mercenary_den in DATABASE:
+        if (system.lower() == mercenary_den['system'].lower() and int(planet_number) == mercenary_den['planet_number']):
+            column_location = ('[P' + str(mercenary_den['planet_number']).rjust(2, "0") + "] " + mercenary_den['system'])
+
+            mercenary_den['owner'] = ''
+            mercenary_den['reinforced'] = ''
+            mercenary_den["modified"] = time.time()
+
+            persist_data()
+            
+            payload = column_location.ljust(COLUMN_LOCATION_LENGTH) + '>>  Cleared'
+        else:
+            payload = "Specified target system was not found!"
+    return await ctx.send(payload)
 
 def get_ordered_regions():
     regions = []
