@@ -58,7 +58,7 @@ async def region_dens(ctx, region:str, reinforced:bool=False, alliance_only:bool
     if (reinforced == True):
         payload += 'Region'.ljust(COLUMN_REGION_LENGTH)
 
-    payload += "Reinforced".ljust(COLUMN_REINFORCED_LENGTH) + "Last Updated".ljust(COLUMN_MODIFIED_LENGTH) + "Owner".ljust(COLUMN_OWNER_LENGTH) + os.linesep
+    payload += "Reinforced".ljust(COLUMN_REINFORCED_LENGTH) + "Time Left".ljust(COLUMN_TIMELEFT_LENGTH) + "Owner".ljust(COLUMN_OWNER_LENGTH) + os.linesep
 
     ordered_dens = []
 
@@ -87,15 +87,18 @@ async def region_dens(ctx, region:str, reinforced:bool=False, alliance_only:bool
         if (mercenary_den['system'] not in highlighted_systems):
             highlighted_systems.append(mercenary_den['system'])
 
+        time_left_value = ''
+
         if (isinstance(mercenary_den['reinforced'], float)):
             reinforced_column_value = datetime.fromtimestamp(mercenary_den['reinforced'], tz=timezone.utc).strftime("%Y-%m-%d %H:%M")
+            time_left_value = time_left(mercenary_den['reinforced'])
         else:
             reinforced_column_value = mercenary_den['reinforced']
 
         column_location = ('[P' + str(mercenary_den['planet_number']).rjust(2, "0") + "] " + mercenary_den['system'])
         column_region = mercenary_den['region']
         column_reinforced = reinforced_column_value
-        column_last_updated = datetime.fromtimestamp(mercenary_den['modified'], tz=timezone.utc).strftime("%Y-%m-%d %H:%M") if isinstance(mercenary_den['modified'], float) else '-'
+        column_last_updated = time_left_value
         column_owner = mercenary_den['owner'] if len(mercenary_den['owner']) > 0 else '-'
 
         payload_line = column_location.ljust(COLUMN_LOCATION_LENGTH)
@@ -103,7 +106,7 @@ async def region_dens(ctx, region:str, reinforced:bool=False, alliance_only:bool
         if (reinforced == True):
             payload_line += column_region.ljust(COLUMN_REGION_LENGTH)
 
-        payload_line += column_reinforced.ljust(COLUMN_REINFORCED_LENGTH) + column_last_updated.ljust(COLUMN_MODIFIED_LENGTH) + column_owner.ljust(COLUMN_OWNER_LENGTH) +  os.linesep
+        payload_line += column_reinforced.ljust(COLUMN_REINFORCED_LENGTH) + column_last_updated.ljust(COLUMN_TIMELEFT_LENGTH) + column_owner.ljust(COLUMN_OWNER_LENGTH) +  os.linesep
 
         if ((len(payload) + len(payload_line) + BUFFER_CHARACTERS) >= MAXIMUM_CHARACTERS):
             payload = "```" + payload + "```"
@@ -185,6 +188,27 @@ def order_by_reinforcement(element):
      future_time = time.time() + 60*60*24*10
      return element['reinforced'] if isinstance(element['reinforced'], (int, float)) else future_time
 
+def time_left(target_timestamp):
+    # Get the current time
+    now = datetime.now()
+    
+    # Convert the target timestamp (string) to a datetime object
+    target_time = datetime.fromtimestamp(target_timestamp)
+    
+    # Calculate the difference between the target time and current time
+    time_difference = target_time - now
+    
+    # If the target time has passed, return 0 time left
+    if time_difference.total_seconds() < 0:
+        return "The target time has already passed."
+    
+    # Calculate days, hours, and minutes
+    days = time_difference.days
+    hours, remainder = divmod(time_difference.seconds, 3600)
+    minutes, _ = divmod(remainder, 60)
+    
+    return f"{days}d{hours}h{minutes}m"
+
 # Initialize environemnt varialbes
 load_dotenv()
 
@@ -192,11 +216,11 @@ load_dotenv()
 DATABASE_DEFAULT_FILE_NAME = "data/mercenary_dens.json"
 DATABASE_FILE_NAME = "database_mercenary_dens.json"
 DOTLAN_URL = 'https://evemaps.dotlan.net/map/'
-COLUMN_MARGIN_LENGTH = 2
+COLUMN_MARGIN_LENGTH = 4
 COLUMN_LOCATION_LENGTH = 12 + COLUMN_MARGIN_LENGTH
 COLUMN_REGION_LENGTH = 20 + COLUMN_MARGIN_LENGTH
-COLUMN_REINFORCED_LENGTH = 15 + COLUMN_MARGIN_LENGTH
-COLUMN_MODIFIED_LENGTH = 15 + COLUMN_MARGIN_LENGTH
+COLUMN_REINFORCED_LENGTH = 16 + COLUMN_MARGIN_LENGTH
+COLUMN_TIMELEFT_LENGTH = 9 + COLUMN_MARGIN_LENGTH
 COLUMN_OWNER_LENGTH = 12 + COLUMN_MARGIN_LENGTH
 MAXIMUM_CHARACTERS = 2000
 BUFFER_CHARACTERS = 6
