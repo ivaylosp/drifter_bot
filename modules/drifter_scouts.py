@@ -50,7 +50,8 @@ B - Barbican B735
 C - Conflux C414
 ```""")
         
-async def region_wormholes(ctx, region:str='Paragon_Soul'):
+async def region_wormholes(ctx, region:str='Paragon Soul'):
+
     # If the region parameter is send as one letter assume it is a drifter wormhole type search
     if len(region) == 1:  
         await search(ctx, region)
@@ -69,7 +70,6 @@ async def region_wormholes(ctx, region:str='Paragon_Soul'):
     if (region_found == False):
         return await ctx.send(f"Could not find region {region}")
 
-    region = region.title().replace(" ","_")
     url = DOTLAN_URL + region.replace(" ", "_") + '/'
 
     payload = '```[' + region + ']' + os.linesep + os.linesep
@@ -189,6 +189,7 @@ def get_ordered_regions():
 
     for region in DATABASE:
         if region['region'] not in regions:
+            region['region'] = region['region'].replace("_"," ")
             regions.append(region['region'])
 
     regions.sort()

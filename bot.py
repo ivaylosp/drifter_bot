@@ -92,12 +92,23 @@ async def remove(ctx, *arguments):
             return
 
 @bot.command(help='List all drifter wormholes or mercenary dens for a region with Paragon Soul as default')
-async def list(ctx, region:str='Paragon Soul', alliance_only:int=0):
+async def list(ctx, *arguments):
+
+    region = ''
+    alliance_only = False
+
+    for index, value in enumerate(arguments):
+        if (index == 1 and value == "1"):
+            alliance_only = True
+        else:
+            region += ' ' + value
+
+    region = region.strip()
+
     match ctx.message.channel.name:
         case drifter_scouts.channel:
             await drifter_scouts.region_wormholes(ctx, region)
         case mercenary_dens.channel:
-            alliance_only = True if alliance_only == 1 else False
             await mercenary_dens.region_dens(ctx, region, alliance_only=alliance_only)
         case _:
             return
