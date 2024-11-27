@@ -188,8 +188,8 @@ def get_ordered_regions():
     regions = []
 
     for region in DATABASE:
+        region['region'] = region['region'].replace("_"," ")
         if region['region'] not in regions:
-            region['region'] = region['region'].replace("_"," ")
             regions.append(region['region'])
 
     regions.sort()
