@@ -149,6 +149,7 @@ async def clear_mercenary_den(ctx, system:str, planet_number:int):
             persist_data()
             
             payload = column_location.ljust(COLUMN_LOCATION_LENGTH) + '>>  Cleared'
+            break;
         else:
             payload = "Specified target system was not found!"
     return await ctx.send(payload)
