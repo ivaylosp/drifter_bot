@@ -18,12 +18,14 @@ async def register_wormhole(ctx, system: str, wormholeType: str, endOfLife: str=
         drifterWormholeDesignation = DrifterWormholeTypes[wormholeType].value
         eol = ''
         payload = ''
+        found = False
 
         if endOfLife == 'eol':
             eol = '*'    
 
         for region in DATABASE:
             if (region['system'] == system):
+                found = True
                 if (wormholeType == 'E'):
                     region['wormholes'] = ['-']
                     payload = region['system'].ljust(COLUMN_SYSTEM_LENGTH) + '>>  Empty'
@@ -32,6 +34,9 @@ async def register_wormhole(ctx, system: str, wormholeType: str, endOfLife: str=
                     region['wormholes'] += [wormholeType+eol]
                     payload = region['system'].ljust(COLUMN_SYSTEM_LENGTH) + '>>  ' + drifterWormholeDesignation
                 region['modified'] = time.time()
+
+        if (found == False):
+            payload = f"System with designation `{system}` could not be found!"
 
         ## Persist data into a file
         persist_data()
@@ -207,6 +212,10 @@ def check_data_integrity():
         if (system_found == False):
             print(f"Fixing data integrity for missing system {system_default['system']}")
             DATABASE.append(system_default)
+    
+    DATABASE.sort(key = lambda x: (x['region'], x['system']))
+
+    persist_data()
 
 def persist_data():
     ## Persist data into a file
