@@ -645,5 +645,15 @@
     {"region" : "The Citadel", "system":"Santola", "wormholes":[], "modified":""},
     {"region" : "The Citadel", "system":"Tama", "wormholes":[], "modified":""},
     {"region" : "The Citadel", "system":"Uotila", "wormholes":[], "modified":""},
-    {"region" : "The Citadel", "system":"Yashunen", "wormholes":[], "modified":""}
+    {"region" : "The Citadel", "system":"Yashunen", "wormholes":[], "modified":""},
+    {"region" : "Molden Heath", "system":"Altbrard", "wormholes":[], "modified":""},
+    {"region" : "Molden Heath", "system":"Gulfonodi", "wormholes":[], "modified":""},
+    {"region" : "Molden Heath", "system":"Hedaleolfarber", "wormholes":[], "modified":""},
+    {"region" : "Molden Heath", "system":"Hegfunden", "wormholes":[], "modified":""},
+    {"region" : "Molden Heath", "system":"Hrokkur", "wormholes":[], "modified":""},
+    {"region" : "Molden Heath", "system":"Illamur", "wormholes":[], "modified":""},
+    {"region" : "Molden Heath", "system":"Orien", "wormholes":[], "modified":""},
+    {"region" : "Molden Heath", "system":"Osvetur", "wormholes":[], "modified":""},
+    {"region" : "Molden Heath", "system":"Sakulda", "wormholes":[], "modified":""},
+    {"region" : "Molden Heath", "system":"Varigne", "wormholes":[], "modified":""}
 ]
