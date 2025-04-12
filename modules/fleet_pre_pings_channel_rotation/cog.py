@@ -11,7 +11,7 @@ from discord.ext import commands, tasks
 
 GUILD_ID = int(os.getenv('GUILD_ID'))
 DATABASE_HOST = os.getenv('DATABASE_HOST')
-DATABSE_NAME = os.getenv('DATABSE_NAME')
+DATABASE_NAME = os.getenv('DATABASE_NAME')
 DATABASE_USERNAME = os.getenv('DATABASE_USERNAME')
 DATABASE_PASSWORD = os.getenv('DATABASE_PASSWORD')
 DATABASE_PORT = int(os.getenv('DATABASE_PORT'))
@@ -122,7 +122,7 @@ class FleetPrePingsRotation(commands.Cog, name="Fleet pre pings channel rotation
             # Connect to MySQL
             self.connection = mysql.connector.connect(
                 host=DATABASE_HOST,
-                database=DATABSE_NAME,
+                database=DATABASE_NAME,
                 user=DATABASE_USERNAME,
                 password=DATABASE_PASSWORD,
                 port=DATABASE_PORT
