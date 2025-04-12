@@ -1,0 +1,26 @@
+services:
+  drifter_bot:
+    build: .
+    volumes:
+      - .:/app
+  alliance_auth:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'alliance_auth'
+      MYSQL_USER: 'alliance_auth'
+      MYSQL_PASSWORD: '********'
+      MYSQL_ROOT_PASSWORD: '********'
+    command: --sql_mode=""
+    ports:
+      - '3308:3306'
+    expose:
+      - '3306'
+    volumes:
+      - alliance_auth:/var/lib/mysql
+volumes:
+  alliance_auth:
+networks:
+  default:
+    external: true
+    name: drifter_bot_network

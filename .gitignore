@@ -1,8 +1,7 @@
 .env
 .idea
 .idea/*
-modules/*
-__pycache__/*
+__pycache__
 database.json
 database_drifter_scouts.json
 database_mercenary_dens.json

@@ -3,6 +3,7 @@ import os
 import discord
 import logging
 import sys
+import json
 
 from dotenv import load_dotenv
 from discord.ext import commands
@@ -11,6 +12,8 @@ from modules import mercenary_dens
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
+GUILD_ID = int(os.getenv('GUILD_ID'))
+CHANNEL_ROTATION = os.getenv('CHANNEL_ROTATION')
 
 # Specifying supported intents
 intents = discord.Intents.default()
@@ -21,7 +24,6 @@ logger = logging.getLogger('discord')
 logger.setLevel(logging.INFO)
 handler = logging.StreamHandler(sys.stdout)
 handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
-logger.addHandler(handler)
 
 @bot.command(help='Register drifter wormhole or mercenary den within the specialized channel')
 async def add(ctx, *arguments):
@@ -147,7 +149,18 @@ async def find(ctx, wormholeType:str=""):
         case _:
             return
 
+@bot.event
+async def on_ready():
+    try:
+        data = json.loads(CHANNEL_ROTATION)
+        for rotation_settings in data:
+            if os.path.exists(os.path.join("modules", rotation_settings['module'], "cog.py")):
+                logger.info('Loading module %s!', rotation_settings['module'])
+                await bot.load_extension(f"modules.{rotation_settings['module']}.cog")
+    except json.JSONDecodeError as e:
+        logger.error("Invalid JSON format: %s", e)
+
 try:
     bot.run(TOKEN)
 except:
-    print(f"Something went wrong!")
+    print('Something went wrong!')
