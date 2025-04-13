@@ -356,6 +356,7 @@
     {"region" : "Period Basis", "system":"TCAG-3", "wormholes":[], "modified":""},
     {"region" : "Period Basis", "system":"VQE-CN", "wormholes":[], "modified":""},
     {"region" : "Period Basis", "system":"Z-M5A1", "wormholes":[], "modified":""},
+    {"region" : "Period Basis", "system":"GR-J8B", "wormholes":[], "modified":""},
     {"region" : "Scalding Pass", "system":"1QZ-Y9", "wormholes":[], "modified":""},
     {"region" : "Scalding Pass", "system":"2-KPW6", "wormholes":[], "modified":""},
     {"region" : "Scalding Pass", "system":"4E-EZS", "wormholes":[], "modified":""},
