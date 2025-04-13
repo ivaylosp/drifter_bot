@@ -67,12 +67,32 @@ class FleetPingsRotation(commands.Cog, name="Fleet pings channel rotation"):
     async def my_task(self):
         """Start rotation"""
         existing_channel = discord.utils.get(self.guild.channels, name=CHANNEL_NAME)
+        channel_overwrites = {}
+        channel_category = None
+        channel_topic = None
+        channel_position = 0
+        channel_slowmode_delay = 0
+        channel_nsfw = False
 
         if existing_channel:
             self.logger.info('Deleting channel: %s', existing_channel.name)
             await existing_channel.delete()
+            channel_overwrites = existing_channel.overwrites
+            channel_category = existing_channel.category
+            channel_topic = existing_channel.topic
+            channel_position = existing_channel.position
+            channel_slowmode_delay = existing_channel.slowmode_delay
+            channel_nsfw = existing_channel.nsfw
 
-        channel = await self.guild.create_text_channel(CHANNEL_NAME)
+        channel = await self.guild.create_text_channel(
+            name=CHANNEL_NAME,
+            topic=channel_topic,
+            position=channel_position,
+            category=channel_category,
+            overwrites=channel_overwrites,
+            slowmode_delay=channel_slowmode_delay,
+            nsfw=channel_nsfw
+        )
 
         if channel is None:
             self.logger.info('Channel failed to create')
