@@ -2,12 +2,14 @@
 
 import os
 import datetime
-import discord
 import logging
 import json
 import mysql.connector
+import discord
 from mysql.connector import Error
 from discord.ext import commands, tasks
+
+logger = logging.getLogger('discord')
 
 GUILD_ID = int(os.getenv('GUILD_ID'))
 DATABASE_HOST = os.getenv('DATABASE_HOST')
@@ -27,7 +29,6 @@ TIMES = []
 try:
     utc = datetime.timezone.utc
     data = json.loads(CHANNEL_ROTATION)
-    logger = logging.getLogger('discord')
 
     for rotation_settings in data:
         if rotation_settings['module'] == MODULE_NAME:
@@ -40,26 +41,36 @@ except json.JSONDecodeError as e:
 
 class FleetPingsRotation(commands.Cog, name="Fleet pings channel rotation"):
     """Starts a channel rotation"""
-
     def __init__(self, bot: commands.Bot):
         self.bot = bot
-        self.logger = logging.getLogger('discord')
-        self.guild = bot.get_guild(GUILD_ID)
+        self.guild = None
         self.connection = None
         self.settings = None
+        self.logger = logger
+
+        logger.info("Cog ready to start...")
+        self.guild = self.bot.get_guild(GUILD_ID)
 
         if self.guild is None:
-            self.logger.warning('Guild not found!')
+            self.logger.warning("Guild not found!")
             self.cog_unload()
+            return
 
         self.db_connect()
         if self.connection is None:
             self.logger.warning('Aborting due to MySQL issue')
             self.cog_unload()
+            return
         self.db_disconnect()
-        self.my_task.start()
 
-    def cog_unload(self):
+        if not TIMES:
+            logger.warning("No valid times loaded for task loop.")
+
+        if not self.my_task.is_running():
+            logger.info("Cog started...")
+            self.my_task.start()
+
+    async def cog_unload(self):
         """Stop rotation"""
         self.my_task.cancel()
 
@@ -136,7 +147,7 @@ class FleetPingsRotation(commands.Cog, name="Fleet pings channel rotation"):
         except Error as error:
             self.logger.error('MySQL Error: %s', error)
         finally:
-            self.db_disconnect
+            self.db_disconnect()
 
     def db_connect(self):
         try:
@@ -155,7 +166,11 @@ class FleetPingsRotation(commands.Cog, name="Fleet pings channel rotation"):
         if self.connection is not None:
             if self.connection.is_connected():
                 self.connection.close()
-                self.logger.info('MySQL connection closed.')
+                self.logger.info('MySQL connection tested and working. Closing connection for now until needed')
 
-async def setup(bot: commands.Bot):
-    await bot.add_cog(FleetPingsRotation(bot))
+def setup(bot: commands.Bot):
+    try:
+        logger.info('Adding cog extension to discord bot...')
+        bot.add_cog(FleetPingsRotation(bot))
+    except Error as error:
+        logger.error('COG Error: %s', error)

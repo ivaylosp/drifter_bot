@@ -4,6 +4,7 @@ import time
 import json
 import os
 import re
+import logging
 
 from dotenv import load_dotenv
 from os.path import exists
@@ -231,8 +232,10 @@ DATABASE_FILENAME = 'database_drifter_scouts.json'
 
 file_exists = exists(DATABASE_DEFAULT_FILENAME)
 
+logger = logging.getLogger('discord')
+
 if (file_exists):
-    print("Loading default drifter scouts database into memory...")
+    logger.info("Loading default drifter scouts database into memory...")
     with open(DATABASE_DEFAULT_FILENAME) as file:
         DATABASE_DEFAULT = json.load(file)
 else:
@@ -241,7 +244,7 @@ else:
 file_exists = exists(DATABASE_FILENAME)
 
 if (file_exists):
-    print("Loading main drifter scouts database into memory...")
+    logger.info("Loading main drifter scouts database into memory...")
     with open(DATABASE_FILENAME) as file:
         DATABASE = json.load(file)
 else:

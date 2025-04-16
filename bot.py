@@ -18,12 +18,17 @@ CHANNEL_ROTATION = os.getenv('CHANNEL_ROTATION')
 # Specifying supported intents
 intents = discord.Intents.default()
 intents.message_content = True
-client = discord.Client(intents=intents)
+intents.guilds = True
+intents.messages = True
+intents.guild_messages = True
 bot = commands.Bot(command_prefix='!', intents=intents)
+
+#Booting up logger instance
 logger = logging.getLogger('discord')
 logger.setLevel(logging.INFO)
 handler = logging.StreamHandler(sys.stdout)
 handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
+logger.addHandler(handler)
 
 @bot.command(help='Register drifter wormhole or mercenary den within the specialized channel')
 async def add(ctx, *arguments):
@@ -39,7 +44,7 @@ async def add(ctx, *arguments):
                     case 1: wormhole_type = value
                     case 2: eol = value
                     case _:
-                        print("Unsupported index with value {value}")
+                        print(f"Unsupported index with value {value}")
            
             await drifter_scouts.register_wormhole(ctx, system, wormhole_type, eol)
         case mercenary_dens.channel:
@@ -56,7 +61,7 @@ async def add(ctx, *arguments):
                     case 2: reinforcement_time = value
                     case 3: owner = value
                     case _:
-                        print("Unsupported index with value {value}")
+                        print(f"Unsupported index with value {value}")
             
             await mercenary_dens.register_mercenary_den(ctx, system, planet_number, reinforcement_time, owner)
         case _:
@@ -156,7 +161,7 @@ async def on_ready():
         for rotation_settings in data:
             if os.path.exists(os.path.join("modules", rotation_settings['module'], "cog.py")):
                 logger.info('Loading module %s!', rotation_settings['module'])
-                await bot.load_extension(f"modules.{rotation_settings['module']}.cog")
+                bot.load_extension(f"modules.{rotation_settings['module']}.cog")
     except json.JSONDecodeError as e:
         logger.error("Invalid JSON format: %s", e)
 

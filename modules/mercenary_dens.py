@@ -3,6 +3,7 @@ import json
 import os
 import time
 import re
+import logging
 from datetime import datetime
 from datetime import timezone
 from os.path import exists
@@ -247,22 +248,24 @@ BUFFER_CHARACTERS = 6
 # Loading data into memory
 file_exists = exists(DATABASE_DEFAULT_FILE_NAME)
 
+logger = logging.getLogger('discord')
+
 if (file_exists):
-    print("Loading default mercenary den database into memory...")
+    logger.info("Loading default mercenary den database into memory...")
     with open(DATABASE_DEFAULT_FILE_NAME) as file:
         DATABASE_DEFAULT = json.load(file)
 else:
-    print("No database file present. Initializing database into memory...")
+    logger.info("No database file present. Initializing database into memory...")
     DATABASE_DEFAULT = []
 
 file_exists = exists(DATABASE_FILE_NAME)
 
 if (file_exists):
-    print("Loading main mercenary den database into memory...")
+    logger.info("Loading main mercenary den database into memory...")
     with open(DATABASE_FILE_NAME) as file:
         DATABASE = json.load(file)
 else:
-    print("No database file present. Initializing database into memory...")
+    logger.info("No database file present. Initializing database into memory...")
     DATABASE = DATABASE_DEFAULT
 
 # Defining all constants
